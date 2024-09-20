@@ -1,10 +1,18 @@
 const express = require("express") //iniciando o express
+
 const router = express.Router() // configurando a primeira parte da rota
+
 const { v4: uuidv4 } = require('uuid')
 
+const conectaBancoDeDados = require('./bancoDeDados')
+conectaBancoDeDados()
+
 const app = express() //iniciando o app
+
 app.use(express.json())
+
 const porta  = 3333 //criando a porta
+
 
 //criando lista inicial de mulheres
 const mulheres = [
