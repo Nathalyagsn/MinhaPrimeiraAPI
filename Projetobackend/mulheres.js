@@ -75,16 +75,15 @@ async function corrigeMulher(request, response) {
 }
 
 //DELETE
-function deletaMulher(request, response){
-    function todasMenosEla(mulher) {
-        if(mulher.id !== request.params.id) {
-            return mulher
-        }
+async function deletaMulher(request, response){
+    try {
+        await Mulher.findByIdAndDelete(request.params.id)
+        response.json({menssagem: 'Mulher deletada com sucesso!'})
+    } catch(erro) {
+        console.log(erro)
     }
 
-    const mulheresQueFicam = mulheres.filter(todasMenosEla)
-
-    response.json(mulheresQueFicam)
+    
 }
 
 //PORTA
